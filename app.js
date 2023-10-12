@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
     // set response content    
         res.send(`<html>
                     <body>
-                        <h1>Hello!! Dharmendra Vipat</h1>
+                        <h1>Welcome to Aaikyam Backend Server!!!!</h1>
                         </div>
                     </body>
                    </html>`);
