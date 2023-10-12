@@ -9,12 +9,11 @@ app.get('/', (req, res) => {
     // set response content    
         res.send(`<html>
                     <body>
-                        <h1>Welcome to Aaikyam Backend Server</h1>
+                        <h1>Welcome to Aaikyam Backend Server!!</h1>
                         </div>
                     </body>
                    </html>`);
  
-  console.log(`[Version ${version}]: New request => http://${hostname}:${port}`+req.url);
 
 })
 
