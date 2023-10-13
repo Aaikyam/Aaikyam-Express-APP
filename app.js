@@ -17,6 +17,19 @@ app.get('/', (req, res) => {
 
 })
 
+app.get('/user', (req, res) => {
+    // set response content    
+        res.send(`<html>
+                    <body>
+                        <h1>No Exsisting Users</h1>
+                        </div>
+                    </body>
+                   </html>`);
+ 
+
+})
+
+
 app.listen(port, () => {
     console.log(`[Version ${version}]: Server running at http://${hostname}:${port}/`);
 })
