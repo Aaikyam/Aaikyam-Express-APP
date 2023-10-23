@@ -1,35 +1,29 @@
-const express = require('express');
+const express = require("express");
+const cors = require("cors");
+const uploadRoute = require("./routes/upload");
+const mediaRoute = require("./routes/media");
 const app = express();
-const hostname = '127.0.0.1'; // Your server ip address
-const port = 3000;
 
-const version = '1,000,00';
+app.use(cors());
+app.use(express.json());
+app.use(mediaRoute)
+app.use(uploadRoute);
 
-app.get('/', (req, res) => {
-    // set response content    
-        res.send(`<html>
-                    <body>
-                        <h1>Welcome to Aaikyam Backend Server!!!!</h1>
-                        </div>
-                    </body>
-                   </html>`);
- 
+// const hostname = '127.0.0.1'; // Your server ip address
+const port = 8000;
 
-})
-
-app.get('/user', (req, res) => {
-    // set response content    
-        res.send(`<html>
-                    <body>
-                        <h1>No Exsisting Users</h1>
-                        </div>
-                    </body>
-                   </html>`);
- 
-
-})
-
+app.get("/", (req, res) => {
+  // set response content
+  res.send(
+    `<html>
+        <body>
+            <h1>Welcome to Aaikyam Backend Server!!!!</h1>
+            </div>
+        </body>
+    </html>`
+  );
+});
 
 app.listen(port, () => {
-    console.log(`[Version ${version}]: Server running at http://${hostname}:${port}/`);
-})
+  console.log(`Server running at port: ${port}`);
+});
