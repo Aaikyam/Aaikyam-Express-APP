@@ -53,7 +53,7 @@ router.post("/upload/music", upload.single("file"), async (req, res) => {
   // res.setHeader("Content-Disposition", "inline; filename=" + uploadResult.key);
 
   const s3Url = uploadResult;
-  res.status(200).send(s3Url.location);
+  res.status(200).send({"music_url":(s3Url.location)});
 });
 
 //UPLOAD THUMBNAIL
@@ -68,7 +68,7 @@ router.post("/upload/thumbnail", upload.single("file"), async (req, res) => {
   // res.setHeader("Content-Disposition", "inline");
 
   const s3Url = uploadResult;
-  res.status(200).send({"music_url":s3Url.location});
+  res.status(200).send({"thumbnail_url":(s3Url.location)});
 });
 
 router.get("/test", (req, res) => {
