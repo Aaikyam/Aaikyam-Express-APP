@@ -27,6 +27,8 @@ router.post("/addMusic", async (req, res) => {
     instagram: req.body.instagram ? req.body.instagram : null,
     facebook: req.body.facebook ? req.body.facebook : null,
     twitter: req.body.twitter ? req.body.twitter : null,
+  
+  
   };
   try {
     await addEntitiy("Phase0_content", contentData)
@@ -40,4 +42,6 @@ router.post("/addMusic", async (req, res) => {
     res.status(500).send({error})
   }
 });
+
+
 module.exports = router;

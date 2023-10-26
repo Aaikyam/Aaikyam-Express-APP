@@ -38,6 +38,7 @@ const upload = multer({
       cb(new Error("Invalid file type")); 
     }
   },
+  limits: { fileSize: 10000000 },
 });
 
 //UPLOAD MUSIC
