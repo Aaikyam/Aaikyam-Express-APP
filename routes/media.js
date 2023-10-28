@@ -51,7 +51,7 @@ router.get("/get/user", async (req, res) => {
 });
 
 // api to change status of isFearured to true by taking contentId in url params by using updateEntityById function
-router.post('/update/featured/:contentId', async (req, res) => {
+router.get('/update/featured/:contentId', async (req, res) => {
   const contentId = req.params.contentId;
   console.log(contentId)
   const data = await updateEntityById('Phase0_content', { content_id: contentId }, '_isFeatured', true);
