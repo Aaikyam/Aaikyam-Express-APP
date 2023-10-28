@@ -4,6 +4,7 @@ const multer = require("multer");
 const multerS3 = require("multer-s3");
 require("dotenv").config();
 const { S3Client } = require("@aws-sdk/client-s3");
+const {getEntities} = require("../utils/dynamo");
 
 
 const s3 = new S3Client({
@@ -71,8 +72,6 @@ router.post("/upload/thumbnail", upload.single("file"), async (req, res) => {
   res.status(200).send({"thumbnail_url":(s3Url.location)});
 });
 
-router.get("/test", (req, res) => {
-  res.send("test");
-});
+
 
 module.exports = router;

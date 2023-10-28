@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 require("dotenv").config();
-const { addEntitiy,getEntities, getEntitiesById } = require("../utils/dynamo");
+const { addEntitiy,getEntities, getEntitiesById, updateEntityById } = require("../utils/dynamo");
 
 router.post("/addMusic", async (req, res) => {
   const contentCheck = await getEntities("Phase0_content");
@@ -27,6 +27,7 @@ router.post("/addMusic", async (req, res) => {
     instagram: req.body.instagram ? req.body.instagram : null,
     facebook: req.body.facebook ? req.body.facebook : null,
     twitter: req.body.twitter ? req.body.twitter : null,
+    _isFeatured: false,
   
   
   };
@@ -43,5 +44,19 @@ router.post("/addMusic", async (req, res) => {
   }
 });
 
+router.get("/get/user", async (req, res) => {
+  const users = await getEntities("Phase0_content");
+  res.status(200).send(users);
+  
+});
+
+// api to change status of isFearured to true by taking contentId in url params by using updateEntityById function
+router.post('/update/featured/:contentId', async (req, res) => {
+  const contentId = req.params.contentId;
+  console.log(contentId)
+  const data = await updateEntityById('Phase0_content', { content_id: contentId }, '_isFeatured', true);
+  res.status(200).send("data");
+});
+  
 
 module.exports = router;
