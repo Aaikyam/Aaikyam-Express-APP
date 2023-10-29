@@ -54,16 +54,16 @@ router.get("/get/user", async (req, res) => {
 // api to change status of isFearured to true by taking contentId in url params by using updateEntityById function
 router.get('/update/featured/:contentId', async (req, res) => {
   const contentId = req.params.contentId;
-  console.log(contentId)
-  const data = await updateEntityById('Phase0_content', { content_id: contentId }, '_isFeatured', true);
-  res.status(200).send("data");
+  const data = await updateEntityById('Phase0_content', { content_id: contentId }, '_isFeatured', !contentData.Item._isFeatured);
+  const data_1 = await updateEntityById('Phase0_content', { content_id: contentId }, '_isPlaying', !contentData.Item._isPlaying);
+  res.status(200).send("Data Updated Successfully");
 });
 
 router.get('/update/playStatus/:contentId', async (req, res) => {
   const contentId = req.params.contentId;
   const contentData = await getEntitiesById("Phase0_content",{content_id:contentId})
   // check is contentData._isPlaying is true or false and update it to opposite
-  const data = await updateEntityById('Phase0_content', { content_id: contentId }, '_isPlaying', !contentData.Item._isPlaying);
+  
 
   res.status(200).send(data);
 
