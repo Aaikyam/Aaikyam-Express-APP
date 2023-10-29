@@ -14,14 +14,7 @@ const port = 3000;
 
 app.get("/", (req, res) => {
   // set response content
-  res.send(
-    `<html>
-        <body>
-            <h1>Welcome to Aaikyam Backend Server!!!!</h1>
-            </div>
-        </body>
-    </html>`
-  );
+  res.send("Hello World");
 });
 
 app.listen(port, () => {
