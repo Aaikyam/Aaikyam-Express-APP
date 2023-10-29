@@ -28,6 +28,7 @@ router.post("/addMusic", async (req, res) => {
     facebook: req.body.facebook ? req.body.facebook : null,
     twitter: req.body.twitter ? req.body.twitter : null,
     _isFeatured: false,
+    _isPlaying:false,
   
   
   };
@@ -55,6 +56,13 @@ router.get('/update/featured/:contentId', async (req, res) => {
   const contentId = req.params.contentId;
   console.log(contentId)
   const data = await updateEntityById('Phase0_content', { content_id: contentId }, '_isFeatured', true);
+  res.status(200).send("data");
+});
+
+router.get('/update/playStatus/:contentId', async (req, res) => {
+  const contentId = req.params.contentId;
+  console.log(contentId)
+  const data = await updateEntityById('Phase0_content', { content_id: contentId }, '_isPlaying', true);
   res.status(200).send("data");
 });
   
