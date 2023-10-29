@@ -63,7 +63,7 @@ router.get('/update/featured/:contentId', async (req, res) => {
 router.get('/update/playStatus/:contentId', async (req, res) => {
   const contentId = req.params.contentId;
   const contentData = await getEntitiesById("Phase0_content",{content_id:contentId})
-  const data = await updateEntityById('Phase0_content', { content_id: contentId }, '_isPlaying', !contentData.Item._isPlaying);
+  const data = await updateEntityById('Phase0_content', { content_id: contentId }, '_isPlaying', true);
 
   res.status(200).send(data);
 
