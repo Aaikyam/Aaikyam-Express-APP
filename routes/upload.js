@@ -32,20 +32,21 @@ const bucket = process.env.BUCKET_NAME;
         cb(null, req.folder + Date.now().toString() + "-" + file.originalname);
       },
     }),
-    // fileFilter: function (req, file, cb) {
-    //   if (req.type === file.mimetype) {
-    //     cb(null, true); 
-    //   } else {
-    //     cb(new Error("Invalid file type")); 
-    //   }
-    // },
+    fileFilter: function (req, file, cb) {
+      if (req.type === file.mimetype.split("/")[0]) {
+        console.log("type:::",req.type)
+        cb(null, true); 
+      } else {
+        cb(new Error("Invalid file type")); 
+      }
+    },
     limits: { fileSize: 400000000 },
   });
 
 //UPLOAD MUSIC
 router.use("/upload/music", (req, res, next) => {
   req.folder = "music/"; 
-  req.type = "audio/mpeg";
+  req.type = "audio";
   next();
 });
 router.post("/upload/music", upload.single("file"), async (req, res) => {
@@ -60,7 +61,7 @@ router.post("/upload/music", upload.single("file"), async (req, res) => {
 //UPLOAD THUMBNAIL
 router.use("/upload/thumbnail", (req, res, next) => {
   req.folder = "thumbnail/"; 
-  req.type = "image/jpeg";
+  req.type = "image";
   next();
 });
 router.post("/upload/thumbnail", upload.single("file"), async (req, res) => {
