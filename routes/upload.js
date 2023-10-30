@@ -15,32 +15,32 @@ const s3 = new S3Client({
 
 const bucket = process.env.BUCKET_NAME;
 
-const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: bucket,
-    acl: "public-read",
-    metadata: function (req, file, cb) {
-      console.log("check", file);
-      cb(null, {
-        field: file.fieldname,
-        fileName: file.originalname,
-        type: file.mimetype,
-      });
-    },
-    key: function (req, file, cb) {
-      cb(null, req.folder + Date.now().toString() + "-" + file.originalname);
-    },
-  }),
-  fileFilter: function (req, file, cb) {
-    if (req.type === file.mimetype) {
-      cb(null, true); 
-    } else {
-      cb(new Error("Invalid file type")); 
-    }
-  },
-  limits: { fileSize: 10000000 },
-});
+  const upload = multer({
+    storage: multerS3({
+      s3: s3,
+      bucket: bucket,
+      acl: "public-read",
+      metadata: function (req, file, cb) {
+        console.log("check", file);
+        cb(null, {
+          field: file.fieldname,
+          fileName: file.originalname,
+          type: file.mimetype,
+        });
+      },
+      key: function (req, file, cb) {
+        cb(null, req.folder + Date.now().toString() + "-" + file.originalname);
+      },
+    }),
+    // fileFilter: function (req, file, cb) {
+    //   if (req.type === file.mimetype) {
+    //     cb(null, true); 
+    //   } else {
+    //     cb(new Error("Invalid file type")); 
+    //   }
+    // },
+    limits: { fileSize: 400000000 },
+  });
 
 //UPLOAD MUSIC
 router.use("/upload/music", (req, res, next) => {
