@@ -74,5 +74,18 @@ router.post("/upload/thumbnail", upload.single("file"), async (req, res) => {
 });
 
 
+router.use("/upload/user_dp", (req, res, next) => {
+  req.folder = "user_dp/"; 
+  req.type = "image";
+  next();
+});
+router.post("/upload/user_dp", upload.single("file"), async (req, res) => {
+  const uploadResult = req.file;
+  console.log("Uploaded file:", uploadResult);
+
+
+  const s3Url = uploadResult;
+  res.status(200).send({"user_dp_url":(s3Url.location)});
+});
 
 module.exports = router;
