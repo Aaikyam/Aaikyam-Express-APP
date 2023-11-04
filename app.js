@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(mediaRoute)
 app.use(uploadRoute)
-app.use(userRoute)
+app.use("/user",userRoute)
 // const hostname = '127.0.0.1'; // Your server ip address
 const port = 3000;
 

@@ -11,10 +11,10 @@ router.post("/addMusic", async (req, res) => {
     existingIds.push(Number(item.content_id));
   });
 
-  let content_id;
-  do {
-    content_id = Math.floor(10000 + Math.random() * 90000);
-  } while (existingIds.includes(content_id));
+  let content_id = Math.max(...existingIds) + 1
+  // do {
+  //   content_id = Math.floor(10000 + Math.random() * 90000);
+  // } while (existingIds.includes(content_id));
   // console.log("x",existingIds,"\ny",content_id)
   const _id = "00"+content_id.toString()
   const contentData = {

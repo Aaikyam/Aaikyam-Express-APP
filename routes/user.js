@@ -11,7 +11,7 @@ const {
 } = require("../utils/dynamo");
 
 //USER REGISTRATION
-router.post("/user/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   const userCheck = await getEntities("registeredUsers");
 
   let existingIds = [];
@@ -42,7 +42,7 @@ router.post("/user/register", async (req, res) => {
     if (userEmail.length > 0 || userPhone.length > 0) {
       return res.send("Email id or phone number already registered");
     }
-    
+
     const userData = {
       user_id: _id,
       name: req.body.name,
@@ -64,7 +64,7 @@ router.post("/user/register", async (req, res) => {
 });
 
 //USER LOGIN
-router.post("/user/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   let cred = req.body.userId;
   let isEmail = cred.includes("@");
   let attribute = isEmail ? "email" : "phone";
@@ -87,5 +87,7 @@ router.post("/user/login", async (req, res) => {
     res.status(500).send({ error });
   }
 });
+
+router.post("/password/forget")
 
 module.exports = router;

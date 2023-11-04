@@ -29,7 +29,8 @@ const bucket = process.env.BUCKET_NAME;
         });
       },
       key: function (req, file, cb) {
-        cb(null, req.folder + Date.now().toString() + "-" + file.originalname);
+        // cb(null, req.folder + file.originalname+"-"+Date.now().toString());
+        console.log(file)
       },
     }),
     fileFilter: function (req, file, cb) {
