@@ -11,7 +11,16 @@ router.post("/addMusic", async (req, res) => {
     existingIds.push(Number(item.content_id));
   });
 
+  
+
   let content_id = Math.max(...existingIds) + 1
+
+  let Count = [];
+  contentCheck.Items.forEach((item) => {
+    Count.push(Number(item.count));
+  });
+  
+  let __count = Math.max(...Count) + 1
   // do {
   //   content_id = Math.floor(10000 + Math.random() * 90000);
   // } while (existingIds.includes(content_id));
@@ -20,6 +29,7 @@ router.post("/addMusic", async (req, res) => {
   const contentData = {
     content_id: _id,
     music: req.body.music,
+    count: __count,
     title: req.body.title,
     artist: req.body.artist,
     email: req.body.email,
@@ -47,6 +57,12 @@ router.post("/addMusic", async (req, res) => {
 
 router.get("/get/user", async (req, res) => {
   const users = await getEntities("Phase0_content");
+  //sort by count
+  users.Items.sort((a, b) => {
+    console.log(a.count, b.count);
+    return a.count - b.count;
+  });
+
   res.status(200).send(users);
   
 });
