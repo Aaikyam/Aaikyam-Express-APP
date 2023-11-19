@@ -29,6 +29,7 @@ router.post("/addMusic", async (req, res) => {
   const contentData = {
     content_id: _id,
     music: req.body.music,
+    thumbnail:req.body.thumbnail,
     count: __count,
     title: req.body.title,
     artist: req.body.artist,
@@ -39,8 +40,6 @@ router.post("/addMusic", async (req, res) => {
     twitter: req.body.twitter ? req.body.twitter : null,
     _isFeatured: false,
     _isPlaying:false,
-  
-  
   };
   try {
     await addEntitiy("Phase0_content", contentData)
