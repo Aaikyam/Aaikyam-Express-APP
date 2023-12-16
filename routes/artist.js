@@ -17,7 +17,7 @@ const {
   getEntitiesByAttribute,
 } = require("../utils/dynamo");
 
-router.post("/artist/upload", async (req, res) => {
+router.post("/artist/upload", async (req, res) => { //authenticate artist
   const uploadAudioData = {
     music: req.body.music,
     title: req.body.title,
@@ -47,4 +47,5 @@ router.post("/artist/upload", async (req, res) => {
     res.status(500).send({ error });
   }
 });
+
 module.exports = router;

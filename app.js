@@ -4,6 +4,7 @@ const uploadRoute = require("./routes/upload");
 const mediaRoute = require("./routes/media");
 const userRoute = require("./routes/user")
 const artistRoute = require("./routes/artist")
+const marketRoute = require("./routes/marketplace")
 const app = express();
 
 app.use(cors());
@@ -12,6 +13,7 @@ app.use(mediaRoute)
 app.use(uploadRoute)
 app.use("/user",userRoute)
 app.use(artistRoute)
+app.use(marketRoute)
 // const hostname = '127.0.0.1'; // Your server ip address
 const port = 3000;
 
