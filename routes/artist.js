@@ -3,19 +3,14 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 var router = express.Router();
 const mongoose = require('mongoose');
-const UploadAudio = require('../utils/schema')
+const UploadAudio = require('../models/schema')
+const {addEntitiy, getEntities,getEntitiesById,updateEntityById,getEntitiesByAttribute,} = require("../utils/dynamo");
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-const {
-  addEntitiy,
-  getEntities,
-  getEntitiesById,
-  updateEntityById,
-  getEntitiesByAttribute,
-} = require("../utils/dynamo");
 
 router.post("/artist/upload", async (req, res) => { //authenticate artist
   const uploadAudioData = {
