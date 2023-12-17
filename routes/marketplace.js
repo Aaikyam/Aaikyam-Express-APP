@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 var router = express.Router();
 const mongoose = require('mongoose');
-const UploadAudio = require('../models/schema')
+const UploadAudio = require('../models/AudioUpload')
 const Razorpay = require('razorpay');
 const {addEntitiy, getEntities, getEntitiesById, updateEntityById, getEntitiesByAttribute,} = require("../utils/dynamo");
 
